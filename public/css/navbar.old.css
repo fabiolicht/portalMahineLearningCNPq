@@ -1,0 +1,114 @@
+.navbar *{
+    padding: 0;
+    margin: 0;
+    text-decoration: none;
+    list-style: none;
+    box-sizing: border-box;
+  }
+
+  .navbar nav{
+    background: var(--cor-secundaria);
+    height: 80px;
+    width: 100%;
+  }
+  .navbar label.logo{
+    color: var(--cor-preto);
+    font-size: 35px;
+    line-height: 80px;
+    padding: 0 100px;
+    font-weight: bold;
+  }
+  .navbar nav ul{
+    float: right;
+    margin-right: 20px;
+  }
+  .navbar nav ul li{
+    display: inline-block;
+    line-height: 80px;
+    margin: 0 5px;
+  }
+  .navbar label.logo a {
+    color: var(--cor-preto);
+    text-decoration: none;
+}
+  .navbar nav ul li a{
+    color: var(--cor-preto);
+    font-size: 17px;
+    padding: 7px 13px;
+    border-radius: 3px;
+    text-transform: uppercase;
+  }
+  .navbar a.active,.navbar a:hover{
+    background: var(--cor-secundaria-escura);
+    transition: .5s;
+  }
+  .navbar .checkbtn{
+    font-size: 30px;
+    color: var(--cor-preto);
+    float: right;
+    line-height: 80px;
+    margin-right: 40px;
+    cursor: pointer;
+    display: none;
+  }
+  .navbar #check{
+    display: none;
+  }
+  @media (max-width: 952px){
+    .navbar label.logo{
+      font-size: 30px;
+      padding-left: 50px;
+    }
+    .navbar nav ul li a{
+      font-size: 16px;
+    }
+  }
+  @media (max-width: 336px){
+    .navbar label.logo{
+      font-size: 20px;
+      padding-left: 30px;
+    }
+    .navbar nav ul li a{
+      font-size: 14px;
+    }
+}
+@media (max-width: 277px){
+    .navbar label.logo{
+      font-size: 15px;
+    }
+}
+  @media (max-width: 858px){
+    .navbar .checkbtn{
+      display: block;
+    }
+    .navbar ul{
+      position: fixed;
+      width: 100%;
+      height: 100vh;
+      background: var(--cor-primaria);
+      top: 80px;
+      left: -100%;
+      text-align: center;
+      transition: all .5s;
+    }
+    .navbar nav ul li{
+      display: block;
+      margin: 50px 0;
+      line-height: 30px;
+    }
+    .navbar nav ul li a{
+      font-size: 20px;
+    }
+    .navbar a:hover,.navbar a.active{
+      background: none;
+      color: var(--cor-preto);
+    }
+    .navbar #check:checked ~ ul{
+      left: 0;
+    }
+  }
+  .navbar section{
+    background: url(bg1.jpg) no-repeat;
+    background-size: cover;
+    height: calc(100vh - 80px);
+  }

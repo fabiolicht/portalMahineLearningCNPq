@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rotating Word Cloud Globe</title>
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+    }
+
+    #canvas-container {
+      width: 100%;
+      height: 100vh;
+    }
+  </style>
+</head>
+<body>
+  <div id="canvas-container"></div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script>
+    // Word list (replace with your own)
+    const words = [
+      'Cloud', 'Computing', 'Artificial', 'Intelligence', 'Machine', 'Learning',
+      'Data', 'Science', 'Algorithm', 'Network', 'Software', 'Technology'
+    ];
+
+    // Initialize Three.js scene, camera, renderer
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+    const renderer = new THREE.WebGLRenderer({ antialias: true });
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    document.getElementById('canvas-container').appendChild(renderer.domElement);
+
+    // Create sphere geometry for the globe
+    const sphereGeometry = new THREE.SphereGeometry(10, 32, 32);
+
+    // Create material for the globe
+    const sphereMaterial = new THREE.MeshBasicMaterial({
+      color: 0xffffff,
+      map: THREE.ImageUtils.loadTexture('globe-texture.jpg'),
+      side: THREE.DoubleSide
+    });
+
+    // Create sphere mesh representing the globe
+    const globeMesh = new THREE.Mesh(sphereGeometry, sphereMaterial);
+    scene.add(globeMesh);
+
+    // Generate and position words on the globe
+    const wordFont = new THREE.FontLoader().load('Arial_Regular.json');
+    const wordMeshes = [];
+    for (const word of words) {
+      const wordGeometry = new THREE.TextGeometry(word, {
+        font: wordFont,
+        size: 0.5, // Adjust size based on word length
+        height: 0.1,
+        curveSegments: 12,
+        bevelEnabled: true,
+        bevelThickness: 0.2,
+        bevelSize: 0.1
+      });
+
+      const wordMesh = new THREE.Mesh(wordGeometry, new THREE.MeshBasicMaterial({ color: 0x000000 }));
+      wordMesh.position.setRandomInSphere(1); // Position within sphere radius
+      wordMesh.rotation.x = Math.random() * Math.PI; // Random rotation
+      wordMesh.rotation.y = Math.random() * Math.PI; // Random rotation
+
+      wordMeshes.push(wordMesh);
+      scene.add(wordMesh);
+    }
+
+    // Animation loop
+    function animate() {
+      requestAnimationFrame(animate);
+
+      // Rotate the globe
+      globeMesh.rotation.y += 0.01; // Adjust speed for desired rotation
+
+      // Update renderer with scene and camera
+      renderer.render(scene, camera);
+    }
+
+    animate();
+
+    // Window resize event handler
+    window.addEventListener('resize', () => {
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,288 @@
+.custom-component * {
+  text-decoration: none;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  outline: none;
+}
+
+.custom-component body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.custom-section {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: table;
+  position: relative;
+}
+
+.custom-section h1 {
+  margin: 0 auto;
+  display: table;
+  font-size: 26px;
+  padding: 40px 0;
+  color: var(--cor-preto);
+  text-align: center;
+}
+
+.custom-section h1 span {
+  font-weight: 500;
+}
+
+.custom-header {
+  width: 100%;
+  align-items: center;
+  display: table;
+  background-color: var(--cor-secundaria);
+  margin-bottom: 20px;
+}
+
+.custom-logo {
+  float: center;
+  vertical-align: middle;
+  align-content: center;
+  font-size: 26px;
+  text-transform: uppercase;
+  color: var(--cor-preto);
+  font-weight: 600;
+  padding: 20px 0;
+}
+
+.custom-nav {
+  width: auto;
+  float: right;
+}
+
+.custom-nav ul {
+  display: table;
+  float: right;
+}
+
+.custom-nav ul li {
+  float: left;
+}
+
+.custom-nav ul li:last-child {
+  padding-right: 0;
+}
+
+.custom-nav ul li a {
+  color: var(--cor-preto);
+  font-size: 18px;
+  padding: 25px 20px;
+  display: inline-block;
+  transition: all 0.5s ease 0s;
+}
+
+.custom-nav ul li a:hover {
+  background-color: var(--cor-preto);
+  color: var(--cor-secundaria);
+  transition: all 0.5s ease 0s;
+}
+
+.custom-nav ul li a:hover i {
+  color: var(--cor-secundaria);
+  transition: all 0.5s ease 0s;
+}
+
+.custom-nav ul li a i {
+  padding-right: 10px;
+  color: var(--cor-preto);
+  transition: all 0.5s ease 0s;
+}
+
+.toggle-menu {
+  opacity: 0;
+  /* Torna o elemento visível visualmente */
+  pointer-events: none;
+  /* Habilita interações do usuário com o elemento */
+  position: absolute;
+  /* Restaura a posição padrão */
+}
+
+.toggle-menu input[type="checkbox"]:checked~.toggle-menu {
+  opacity: 0;
+  /* Mantém visível quando o checkbox está marcado */
+  pointer-events: none;
+  /* Mantém habilitado para interações do usuário */
+}
+
+.toggle-menu ul {
+  display: table;
+}
+
+.toggle-menu ul li {
+  width: 100%;
+  height: 3px;
+  background-color: var(--cor-preto);
+  margin-bottom: 4px;
+}
+
+.toggle-menu ul li:last-child {
+  margin-bottom: 0;
+}
+
+.custom-component input[type="checkbox"],
+.custom-component label {
+  display: none;
+}
+
+.custom-component footer {
+  display: table;
+  padding-bottom: 30px;
+  width: 100%;
+}
+
+.custom-component input[type="checkbox"] {
+  position: absolute;
+  top: -9999px;
+  left: -9999px;
+  background: none;
+}
+
+.custom-component input[type="checkbox"]:focus {
+  background: none;
+}
+
+.custom-component label {
+  float: right;
+  padding: 8px 0;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.custom-component input[type="checkbox"]:checked~.custom-nav {
+  display: block;
+}
+
+.custom-content {
+  display: table;
+  margin-bottom: 60px;
+  width: 900px;
+}
+
+.custom-content h2 {
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--cor-preto);
+  border-bottom: 1px solid var(--cor-secundaria);
+  display: table;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+}
+
+.custom-content p {
+  font-size: 14px;
+  line-height: 22px;
+  color: #7c7c7c;
+  text-align: justify;
+}
+
+@media only screen and (max-width: 1440px) {
+  .custom-section {
+    max-width: 95%;
+  }
+}
+
+@media only screen and (max-width: 980px) {
+  .custom-header {
+    padding: 20px 0;
+  }
+
+  .custom-logo {
+    padding: 20;
+    align-items: center;
+    align-self: center;
+    text-align: center;
+    vertical-align: middle;
+  }
+
+  .custom-component input[type="checkbox"] {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+    background: none;
+  }
+
+  .custom-component input[type="checkbox"]:focus {
+    background: none;
+  }
+
+  .custom-component label {
+    float: right;
+    padding: 8px 0;
+    display: inline-block;
+    cursor: pointer;
+  }
+
+  .custom-component input[type="checkbox"]:checked~.custom-nav {
+    display: block;
+  }
+
+  .custom-nav {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 53px;
+    background-color: var(--cor-preto);
+    padding: 0;
+    z-index: 99;
+  }
+
+  .custom-nav ul {
+    width: auto;
+  }
+
+  .custom-nav ul li {
+    float: none;
+    padding: 0;
+    width: 100%;
+    display: table;
+  }
+
+  .custom-nav ul li a {
+    color: #fff;
+    font-size: 15px;
+    padding: 10px 20px;
+    display: block;
+    border-bottom: 1px solid rgba(225, 225, 225, 0.1);
+  }
+
+  .custom-nav ul li a i {
+    color: var(--cor-secundaria);
+    padding-right: 13px;
+  }
+
+  .toggle-menu {
+    display: none;
+  }
+
+  .toggle-menu {
+    opacity: 1;
+    /* Torna o elemento visível visualmente */
+    pointer-events: auto;
+    /* Habilita interações do usuário com o elemento */
+    position: static;
+    /* Restaura a posição padrão */
+  }
+
+  .toggle-menu input[type="checkbox"]:checked~.toggle-menu {
+    opacity: 1;
+    /* Mantém visível quando o checkbox está marcado */
+    pointer-events: auto;
+    /* Mantém habilitado para interações do usuário */
+  }
+
+  .toggle-menu ul {
+    display: none;
+  }
+
+  .toggle-menu input[type="checkbox"]:checked~ul {
+    display: table;
+    width: 25px;
+  }
+}

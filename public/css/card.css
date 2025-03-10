@@ -1,0 +1,45 @@
+.card {
+    width: 600px;
+    height: 300px;
+    border: 3px solid #003f9eec;
+    border-radius: 5px;
+    box-shadow: 1 1 5px #ac0a0abe;
+    background-position: center;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+}
+
+.card img {
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    border: 3px solid #003f9eec;
+}
+
+.card-content {
+    padding: 5px;
+    border: 2px solid #003f9eec;
+}
+
+.card-content h1 {
+    font-size: 16px;
+    font-weight: bold;
+    color: blue;
+}
+
+.card-content p {
+    font-size: 16px;
+    color: #2e70ad;
+}
+
+.hero {
+    width: 100%;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+}
+
+.corAzul {
+    color: blue;
+}

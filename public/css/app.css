@@ -1,0 +1,158 @@
+:root {
+    --cor-primaria: #d9d9d9;
+    --cor-secundaria: #f2f2f2;
+    --cor-branco: #ffffff;
+    --cor-secundaria-escura: #ddd6;
+    --cor-preto: #1a1a1a;
+    --cor-preto-claro: #7f7f7f;
+    --cor-verde: #4caf50;
+    --cor-verde-hover: #45a049;
+    --cor-vermelho-hover: #f44336;
+}
+
+.hero {
+    width: auto;
+    height: auto;
+    min-height: 0vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* :root { root antigo
+    --cor-primaria: #ffffff;
+    --cor-secundaria: #f9f9f9;
+    --cor-secundaria-escura: rgba(217, 244, 67, 0.4);
+    --cor-preto: #1a1a1a;
+    --cor-preto-claro: #69c192;
+    --cor-verde: #4caf50;
+    --cor-verde-hover: #45a049;
+} */
+
+::-webkit-scrollbar {
+    display: none;/* tira barra de scroll, opcional */
+  }
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: var(--cor-branco);
+    box-sizing: border-box;
+    font-family: sans-serif;
+    -ms-overflow-style: none;  /* tira barra de scroll, opcional */
+    scrollbar-width: none;  /* tira barra de scroll, opcional */
+}
+
+/* Estilo para cabeçalho */
+header {
+    background-color: var(--cor-secundaria);
+    padding: 10px 0;
+    text-align: center;
+}
+
+/* Estilo para o conteúdo principal */
+.main-content {
+    background-color: var(--cor-secundaria-escura);
+    padding: 20px;
+    border-radius: 5px;
+}
+
+/* Estilo para links */
+a {
+    color: var(--cor-verde);
+    /* Alterado para a cor verde definida */
+    text-decoration: none;
+    transition: color 0.3s ease;
+    /* Adicionado para uma transição suave na cor */
+}
+
+/* a:hover {
+    color: var(--cor-verde-hover);
+    Alterado para a cor verde hover definida 
+}
+
+Estilo para títulos 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: var(--cor-preto);
+    Alterado para a cor preta definida 
+} */
+
+/* Estilo para botões */
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: var(--cor-verde);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    /* Adicionado para uma transição suave na cor de fundo */
+}
+
+.btn:hover {
+    background-color: var(--cor-verde-hover);
+    /* Alterado para a cor verde hover definida */
+}
+
+html, body {
+    width: 100%;
+    height: auto;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.iframe-container {
+    width: 100%;
+    height: 500px; /* Permite que o iframe expanda verticalmente */
+}
+
+.iframe-container iframe {
+    width: 100%;
+    border: none;
+    height: 100%; /* Preenche a altura do iframe-container */
+    object-fit: 100%; 
+    object-position: 100%;
+}
+
+/* Estilos para organização responsiva do conteúdo */
+.content {
+    display: flex; /* Flexbox para layout responsivo */
+    flex-direction: column; /* Organiza os elementos na vertical */
+    align-items: center; /* Centraliza os elementos horizontalmente */
+    justify-content: center; /* Centraliza os elementos verticalmente */
+}
+
+.responsive-image {
+    display: block;
+    margin: 0 auto;
+    max-width: 100%;
+    height: auto;
+}
+
+.legenda {
+    display: none; /* Oculta a legenda inicialmente */
+    position: absolute; /* Posicionamento relativo à imagem */
+    bottom: 0; /* Posiciona na parte inferior da imagem */
+    left: 0; /* Posiciona na esquerda da imagem */
+    width: 100%; /* Ocupa toda a largura da imagem */
+    background-color: rgba(179, 21, 21, 0.5); /* Cor de fundo semitransparente */
+    color: rgb(113, 207, 195); /* Cor do texto */
+    padding: 10px; /* Espaçamento interno */
+    text-align: center; /* Alinha o texto centralizado */
+    transition: opacity 0.5s ease; /* Efeito de transição para opacidade */
+  }
+  
+  img:hover .legenda {
+    display: block; /* Exibe a legenda no hover */
+    opacity: 1; /* Torna a legenda totalmente opaca */
+  }
