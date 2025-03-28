@@ -20,8 +20,8 @@ class PhotoController extends Controller
     {
         $this->validate($request, [
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'type' => 'required|in:celular,ultrassom,ressonancia,tomografia,raio_x,mamografia',
-            'location' => 'required|in:abdomen,pulmao,cervical,colon,utero,rim,oral,mama,figado,estomago,outras_localizacoes',
+            'type' => 'required|in:celular,ultrassom,ressonancia,tomografia,raio_x,mamografia,fotografia',
+            'location' => 'required|in:abdomen,pulmao,cervical,colon,utero,rim,oral,mama,figado,estomago,pele,outras_localizacoes',
         ]);
         if (strstr(php_uname(), "indows")) {
             $python3_path = exec('where python3');
@@ -77,12 +77,12 @@ class PhotoController extends Controller
 
             $resultado = $saida;
             //return '<BR><H1>Resultado = ' . $resultado;
- 
+
 
             return redirect()->route('classificationM', [
                 'resultado' => $resultado,
                 'path' => $encodePath,
-            ]); 
+            ]);
 
         } elseif ($photo->type == "tomografia" && $orgao == "figado") {
             $executavel = implode(' ', [$python3_path]); //. $path ];
@@ -198,7 +198,7 @@ class PhotoController extends Controller
                 'resultado' => $resultado,
                 'path' => $encodePath,
             ]);
-        }  elseif ($photo->type == "celular" && $orgao == "oral") {
+        } elseif ($photo->type == "celular" && $orgao == "oral") {
             $executavel = implode(' ', [$python3_path]); //. $path ];
             //$executavel = implode(' ', ['/usr/bin/ls']);
             $process = new Process([$executavel, 'classificacaoCelularOral.py', $path]);
@@ -255,7 +255,7 @@ class PhotoController extends Controller
                 'resultado' => $resultado,
                 'path' => $encodePath,
             ]);
-        }elseif ($photo->type == "tomografia" && $orgao == "rim") {
+        } elseif ($photo->type == "tomografia" && $orgao == "rim") {
             $executavel = implode(' ', [$python3_path]); //. $path ];
             //$executavel = implode(' ', ['/usr/bin/ls']);
             $process = new Process([$executavel, 'classificacaoTomografiaRim.py', $path]);
@@ -274,7 +274,7 @@ class PhotoController extends Controller
                 'resultado' => $resultado,
                 'path' => $encodePath,
             ]);
-        }  elseif ($photo->type == "tomografia" && $orgao == "cerebro") {
+        } elseif ($photo->type == "tomografia" && $orgao == "cerebro") {
             $executavel = implode(' ', [$python3_path]); //. $path ];
             //$executavel = implode(' ', ['/usr/bin/ls']);
             $process = new Process([$executavel, 'classificacaoTomografiaCerebro.py', $path]);
@@ -309,6 +309,25 @@ class PhotoController extends Controller
             //return '<BR><H1>Resultado = ' . $resultado;
 
             return redirect()->route('classificationTA', [
+                'resultado' => $resultado,
+                'path' => $encodePath,
+            ]);
+        } elseif ($photo->type == "fotografia" && $orgao == "pele") {
+            $executavel = implode(' ', [$python3_path]); //. $path ];
+            //$executavel = implode(' ', ['/usr/bin/ls']);
+            $process = new Process([$executavel, 'classificacaoFotografiaPele.py', $path]);
+            $process->start(); // Inicia o processo
+            while ($process->isSuccessful())
+                ;
+
+            $process->wait(); // Aguarda o processo terminar
+            $saida = $process->getOutput();
+            $erro = $process->getErrorOutput();
+
+            $resultado = $saida;
+            //return '<BR><H1>Resultado = ' . $resultado;
+
+            return redirect()->route('classificationFP', [
                 'resultado' => $resultado,
                 'path' => $encodePath,
             ]);

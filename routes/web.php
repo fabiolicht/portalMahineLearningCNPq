@@ -11,6 +11,7 @@ use App\Http\Controllers\ResultControllerCelularOral;
 use App\Http\Controllers\ResultControllerCelularPulmao;
 use App\Http\Controllers\ResultControllerCelularRim;
 use App\Http\Controllers\ResultControllerCelularUtero;
+use App\Http\Controllers\ResultControllerFotografiaPele;
 use App\Http\Controllers\ResultControllerMamografia;
 use App\Http\Controllers\ResultControllerTomografiaAbdomen;
 use App\Http\Controllers\ResultControllerTomografiaCerebro;
@@ -93,5 +94,8 @@ Route::post('/classificationTA/{resultado}/{path}', [ResultControllerTomografiaA
 
 Route::get('/classificationTC/{resultado}/{path}', [ResultControllerTomografiaCerebro::class, '__invoke'])->name('classificationTC');
 Route::post('/classificationTC/{resultado}/{path}', [ResultControllerTomografiaCerebro::class, '__invoke']);
+
+Route::get('/classificationFP/{resultado}/{path}', [ResultControllerFotografiaPele::class, '__invoke'])->name('classificationFP');
+Route::post('/classificationFP/{resultado}/{path}', [ResultControllerFotografiaPele::class, '__invoke']);
 
 Route::post('/validate-image', [ImageValidationController::class, 'validateImage']);

@@ -174,7 +174,8 @@
                 ultrassom: ["figado", "mama", "outras_localizacoes"],
                 ressonancia: ["outras_localizacoes"],
                 tomografia: ["abdomen", "cerebro", "figado", "rim", "outras_localizacoes"],
-                raio_x: ["pulmao", "outras_localizacoes"]
+                raio_x: ["pulmao", "outras_localizacoes"],
+                fotografia: ["pele"]
             };
 
             const locationLabels = {
@@ -188,6 +189,7 @@
                 oral: "Oral",
                 pulmao: "Pulmão",
                 rim: "Rim",
+                pele: "Pele",
                 outras_localizacoes: "Outras Localizações"
             };
 
@@ -247,6 +249,7 @@
                 <option value="tomografia">Tomografia</option>
                 <option value="ressonancia">Ressonância</option>
                 <option value="mamografia">Mamografia</option>
+                <option value="fotografia">Fotografia</option>
             </select>
 
             <label for="location" class="form-label">Local:</label>
