@@ -48,10 +48,10 @@ Route::get('/upload', [PhotoController::class, 'create']);
 Route::post('/upload', [PhotoController::class, 'store']);
 
 //Route::get('/classification/{resultado}', [ResultController::class, '__invoke'])->name('classification');
-Route::get( '/classificationUM/{resultado}/{path}', [ResultControllerUltrassomMama::class, '__invoke'])->name('classificationUM');
+Route::get('/classificationUM/{resultado}/{path}', [ResultControllerUltrassomMama::class, '__invoke'])->name('classificationUM');
 Route::post('/classificationUM/{resultado}/{path}', [ResultControllerUltrassomMama::class, '__invoke']);
 
-Route::get( '/classificationM/{resultado}/{path}', [ResultControllerMamografia::class, '__invoke'])->name('classificationM');
+Route::get('/classificationM/{resultado}/{path}', [ResultControllerMamografia::class, '__invoke'])->name('classificationM');
 Route::post('/classificationM/{resultado}/{path}', [ResultControllerMamografia::class, '__invoke']);
 
 Route::get('/classificationTF/{resultado}/{path}', [ResultControllerTomografiaFigado::class, '__invoke'])->name('classificationTF');
@@ -60,7 +60,7 @@ Route::post('/classificationTF/{resultado}/{path}', [ResultControllerTomografiaF
 Route::get('/classificationUF/{resultado}/{path}', [ResultControllerUltrassomFigado::class, '__invoke'])->name('classificationUF');
 Route::post('/classificationUF/{resultado}/{path}', [ResultControllerUltrassomFigado::class, '__invoke']);
 //Route::get('/resultado', 'ResultController@resultado');
- 
+
 
 //Route::get('/classification', [ ResultController::class, 'classification' ]);
 //Route::post('/classification', [ ResultController::class, 'classification' ]);

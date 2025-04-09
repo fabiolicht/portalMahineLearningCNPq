@@ -11,7 +11,7 @@ import sys
 from tensorflow.keras.utils import custom_object_scope
 
 # Defina a função dice_loss
-
+ 
 
 def dice_loss(y_true, y_pred):
     numerator = 2 * tf.reduce_sum(y_true * y_pred)

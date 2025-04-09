@@ -16,11 +16,11 @@ class ResultControllerMamografia extends Controller
     {
         if (strstr(php_uname(), "indows")) {
             $python3_path = exec('where python3');
-        }else{
+        } else {
             $python3_path = exec('which python3');
         }
         //echo " <BR>Localização do Python3: $python3_path <BR>";
-        
+
         $path = base64_decode($path);
         $text4 = "<font color='red'>ATENÇÃO:</font> Este algoritmo possui 48% de probabilidade de acerto!";
         if (strstr($resultado, "Maligno")) {
@@ -37,17 +37,18 @@ class ResultControllerMamografia extends Controller
 
             $dados = [
                 'imagePath' => $imagePath,
-                'resultado' =>  $resultado, //'Maligno',
+                'resultado' => $resultado, //'Maligno',
             ];
             return view('resultado', $dados);
-            
+
         } elseif (strstr($resultado, "Benigno")) {
             $executavel = implode(' ', [$python3_path]); //. $path ];
 
             $process = new Process([$executavel, 'segmentacaoBenignoMamografia.py', $path]);
             $process->start(); // Inicia o processo
             set_time_limit(600); // Define o tempo limite para 600 segundos (10 minutos)
-            while ($process->isSuccessful());
+            while ($process->isSuccessful())
+                ;
             $process->wait(); // Aguarda o processo terminar
             $saida = $process->getOutput();
             $erro = $process->getErrorOutput();

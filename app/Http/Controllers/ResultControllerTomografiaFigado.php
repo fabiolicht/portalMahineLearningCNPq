@@ -34,7 +34,7 @@ class ResultControllerTomografiaFigado extends Controller
                 sleep(1);
             }
             //while ($process->isSuccessful());
-                
+
             //$process->wait(); // Aguarda o processo terminar
             $saida = $process->getOutput();
             $erro = $process->getErrorOutput();
@@ -53,7 +53,7 @@ class ResultControllerTomografiaFigado extends Controller
             $process->start(); // Inicia o processo
             set_time_limit(600); // Define o tempo limite para 600 segundos (10 minutos)
             //while ($process->isSuccessful());
-                
+
             $process->wait(); // Aguarda o processo terminar
             $saida = $process->getOutput();
             $erro = $process->getErrorOutput();

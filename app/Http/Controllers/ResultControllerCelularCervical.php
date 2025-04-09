@@ -41,7 +41,7 @@ class ResultControllerCelularCervical extends Controller
             ];
             return view('resultado', $dados);
 
-        }  elseif (strstr($resultado, "MEP")) {
+        } elseif (strstr($resultado, "MEP")) {
             $executavel = implode(' ', [$python3_path]); //. $path ];
 
             $process = new Process([$executavel, 'segmentacaoMEPCelularCervical.py', $path]);

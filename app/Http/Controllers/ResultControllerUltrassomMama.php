@@ -16,11 +16,11 @@ class ResultControllerUltrassomMama extends Controller
     {
         if (strstr(php_uname(), "indows")) {
             $python3_path = exec('where python3');
-        }else{
+        } else {
             $python3_path = exec('which python3');
         }
         //echo " <BR>Localização do Python3: $python3_path <BR>";
-        
+
         $path = base64_decode($path);
         $text4 = "<font color='red'>ATENÇÃO:</font> Este algoritmo possui 87% de probabilidade de acerto!";
         if (strstr($resultado, "Maligno")) {
@@ -40,7 +40,7 @@ class ResultControllerUltrassomMama extends Controller
                 'resultado' => $resultado, //'Maligno',
             ];
             return view('resultado', $dados);
-            
+
         } elseif (strstr($resultado, "Benigno")) {
             $executavel = implode(' ', [$python3_path]); //. $path ];
 
