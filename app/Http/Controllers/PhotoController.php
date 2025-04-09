@@ -332,7 +332,9 @@ class PhotoController extends Controller
                 'path' => $encodePath,
             ]);
         } else {
-            return '<BR><H1>Não estamos fazendo análise neste tipo e exame.<BR>Você pode utilizar o mesmo tipo de exame de uma outra região para tentar a análise, entretanto a incerteza aumentará';
+            return '<BR><H1>Não estamos fazendo análise neste tipo e exame.<BR>
+            Você pode utilizar o mesmo tipo de exame de uma outra região para 
+            tentar a análise, entretanto a incerteza aumentará';
         }
     }
 }

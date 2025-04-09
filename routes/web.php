@@ -95,6 +95,7 @@ Route::post('/classificationTA/{resultado}/{path}', [ResultControllerTomografiaA
 Route::get('/classificationTC/{resultado}/{path}', [ResultControllerTomografiaCerebro::class, '__invoke'])->name('classificationTC');
 Route::post('/classificationTC/{resultado}/{path}', [ResultControllerTomografiaCerebro::class, '__invoke']);
 
+//inclusão da rota para fotografia de pele
 Route::get('/classificationFP/{resultado}/{path}', [ResultControllerFotografiaPele::class, '__invoke'])->name('classificationFP');
 Route::post('/classificationFP/{resultado}/{path}', [ResultControllerFotografiaPele::class, '__invoke']);
 
