@@ -226,39 +226,17 @@
         <h1>Upload</h1>
     </section>
 
-    <form method="POST" action="/upload" enctype="multipart/form-data">
-        @csrf
-        <div class="hero">
-            <label for="input-file" id="drop-area">
-                <input type="file" name="image" accept="image/*" id="input-file" hidden onchange="handleFileSelect()">
-                <div id="img-view">
-                    <img id="preview-img" src="{{ asset('images/508-icon.png') }}" alt="Preview">
-                    <p>Clique aqui para o upload</p>
-                </div>
-            </label>
-        </div>
-        <div class="form-container">
-            <label for="type" class="form-label">Apelido:</label>
-            <input type="text" class="form-text" name="nickname" id="nickname"
-                placeholder="Use um apelido para identificação do resultado" oninput="validateNickname(this)">
+    <div class="button-container">
+        <h2>O que você quer enviar?</h2>
 
-            <label for="type" class="form-label">Tipo:</label>
-            <select name="type" class="form-select" id="type" onchange="showFileInput()">
-                <option value="" disabled selected>Selecione um tipo de exame</option>
-                <option value="ultrassom">Ultrassom</option>
-                <option value="tomografia">Tomografia</option>
-                <option value="ressonancia">Ressonância</option>
-                <option value="mamografia">Mamografia</option>
-                <option value="fotografia">Fotografia</option>
-            </select>
+        <a href="{{ route('uploadImagem') }}">
+            <button class="upload-button">Upload de Imagem</button>
+        </a>
 
-            <label for="location" class="form-label">Local:</label>
-            <select name="location" class="form-select" id="location">
-                <!-- As opções serão atualizadas pelo JavaScript -->
-            </select>
-
-            <input type="submit" value="Upload" class="form-submit">
-        </div>
-    </form>
+        <a href="{{ route('uploadVideo') }}">
+            <button class="upload-button">Upload de Vídeo</button>
+        </a>
+    </div>
 </body>
+
 </html>

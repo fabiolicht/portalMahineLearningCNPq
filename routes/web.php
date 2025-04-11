@@ -100,3 +100,13 @@ Route::get('/classificationFP/{resultado}/{path}', [ResultControllerFotografiaPe
 Route::post('/classificationFP/{resultado}/{path}', [ResultControllerFotografiaPele::class, '__invoke']);
 
 Route::post('/validate-image', [ImageValidationController::class, 'validateImage']);
+
+
+
+Route::get('/uploadImagem', function () {
+    return view('uploadImagem'); // seu formulário atual
+})->name('uploadImagem');
+
+Route::get('/uploadVideo', function () {
+    return view('uploadVideo'); // formulário que você for criar para vídeo
+})->name('uploadVideo');
