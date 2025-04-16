@@ -53,6 +53,22 @@ function renderImage(base64String) {
     document.body.appendChild(image);
 }
 
+function displayVideo(file) {
+    const video = document.getElementById("preview-video");
+    const p = document.querySelector("#img-view p");
+
+    if (file.type.startsWith("video/")) {
+        const fileURL = URL.createObjectURL(file);
+
+        video.src = fileURL;
+        video.style.display = "block"; // mostra o vídeo
+        p.style.display = "none"; // esconde o texto "Clique aqui..."
+    } else {
+        alert("Por favor, selecione um arquivo de vídeo.");
+    }
+}
+
+
 window.onload = function () {
     renderImage("<?php echo $data['image']; ?>");
 };

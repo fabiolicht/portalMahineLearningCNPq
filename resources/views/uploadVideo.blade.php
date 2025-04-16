@@ -9,6 +9,7 @@
 
     <link rel="stylesheet" href="/css/app.css">
     <link rel="stylesheet" href="/css/main.css">
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
         integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -153,7 +154,8 @@
             <label for="input-file" id="drop-area">
                 <input type="file" name="video" accept="video/*" id="input-file" hidden onchange="handleFileSelect()">
                 <div id="img-view">
-                    <video id="preview-video" controls style="max-width: 100%; display: none;"></video>
+                <video id="preview-video" controls style="display: none;"></video>
+                
                     <p>Clique aqui para o upload de vídeo</p>
                 </div>
             </label>

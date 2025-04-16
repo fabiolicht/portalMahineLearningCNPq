@@ -227,14 +227,14 @@
     </section>
 
     <div class="button-container">
-        <h2>O que você quer enviar?</h2>
+        <h2>Qual tipo de arquivo deseja enviar?</h2>
 
         <a href="{{ route('uploadImagem') }}">
-            <button class="upload-button">Upload de Imagem</button>
+            <button class="upload-button">Imagem</button>
         </a>
 
         <a href="{{ route('uploadVideo') }}">
-            <button class="upload-button">Upload de Vídeo</button>
+            <button class="upload-button">Vídeo</button>
         </a>
     </div>
 </body>
