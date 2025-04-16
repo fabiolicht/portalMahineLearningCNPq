@@ -63,21 +63,25 @@
                 const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
                 formData.append('_token', csrfToken);
 
+                /*
                 const response = await fetch('/validate-video', {
                     method: 'POST',
                     body: formData,
                 });
+                
 
                 if (!response.ok) {
                     console.error('Status da resposta:', response.status);
                     console.error('Texto da resposta:', await response.text());
                     throw new Error(`Erro na resposta do servidor. Status: ${response.status}`);
                 }
+                
 
                 const result = await response.json();
+                */
             } catch (error) {
-                console.error('Erro ao validar o vídeo:', error);
-                alert('Erro ao validar o vídeo: ' + error.message);
+                //console.error('Erro ao validar o vídeo:', error);
+                //alert('Erro ao validar o vídeo: ' + error.message);
             }
         }
 
@@ -143,7 +147,7 @@
         <h1>Upload</h1>
     </section>
 
-    <form method="POST" action="/upload" enctype="multipart/form-data">
+    <form method="POST" action="/uploadV" enctype="multipart/form-data">
         @csrf
         <div class="hero">
             <label for="input-file" id="drop-area">

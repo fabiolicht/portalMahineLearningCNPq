@@ -19,6 +19,7 @@ use App\Http\Controllers\ResultControllerTomografiaFigado;
 use App\Http\Controllers\ResultControllerUltrassomFigado;
 use App\Http\Controllers\ResultControllerTomografiaRim;
 use App\Http\Controllers\ResultControllerUltrassomMama;
+use App\Http\Controllers\VideoController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -46,6 +47,9 @@ Route::get('/erro', function () {
 
 Route::get('/upload', [PhotoController::class, 'create']);
 Route::post('/upload', [PhotoController::class, 'store']);
+
+Route::get('/uploadV', [VideoController::class, 'create']);
+Route::post('/uploadV', [VideoController::class, 'store']);
 
 //Route::get('/classification/{resultado}', [ResultController::class, '__invoke'])->name('classification');
 Route::get('/classificationUM/{resultado}/{path}', [ResultControllerUltrassomMama::class, '__invoke'])->name('classificationUM');
