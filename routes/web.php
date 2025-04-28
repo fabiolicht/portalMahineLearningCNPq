@@ -108,9 +108,9 @@ Route::post('/validate-image', [ImageValidationController::class, 'validateImage
 
 
 Route::get('/uploadImagem', function () {
-    return view('uploadImagem'); // seu formulário atual
+    return view('uploadImagem');
 })->name('uploadImagem');
 
 Route::get('/uploadVideo', function () {
-    return view('uploadVideo'); // formulário que você for criar para vídeo
+    return view('uploadVideo');
 })->name('uploadVideo');
