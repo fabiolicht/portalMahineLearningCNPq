@@ -127,6 +127,82 @@
                 console.error('Nenhuma localização encontrada para o tipo selecionado:', typeSelect);
             }
         }
+
+        const video = document.getElementById('preview-video');
+
+        function setStartTime() {
+            const current = video.currentTime.toFixed(2);
+            document.getElementById('start_time').value = current;
+            document.getElementById('start-time-label').textContent = `Início: ${current} s`;
+            updateTimeInfo();
+        }
+
+        function setEndTime() {
+            const current = video.currentTime.toFixed(2);
+            document.getElementById('end_time').value = current;
+            document.getElementById('end-time-label').textContent = `Fim: ${current} s`;
+            updateTimeInfo();
+        }
+
+        function updateTimeInfo() {
+            const start = document.getElementById('start_time').value;
+            const end = document.getElementById('end_time').value;
+            if (start && end) {
+                document.getElementById('time-info').textContent = `Trecho selecionado: de ${start}s até ${end}s`;
+            }
+        }
+
+        function handleFileSelect() {
+            const file = document.getElementById("input-file").files[0];
+            const preview = document.getElementById("preview-video");
+            if (file) {
+                const url = URL.createObjectURL(file);
+                preview.src = url;
+                preview.style.display = "block";
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const video = document.getElementById('preview-video');
+            const inputFile = document.getElementById('input-file');
+            const startTimeInput = document.getElementById('start_time');
+            const endTimeInput = document.getElementById('end_time');
+            const startTimeLabel = document.getElementById('start-time-label');
+            const endTimeLabel = document.getElementById('end-time-label');
+            const timeInfo = document.getElementById('time-info');
+
+            inputFile.addEventListener('change', () => {
+                const file = inputFile.files[0];
+                if (file) {
+                    const url = URL.createObjectURL(file);
+                    video.src = url;
+                    video.style.display = 'block';
+                }
+            });
+
+            window.setStartTime = function () {
+                const current = video.currentTime.toFixed(2);
+                startTimeInput.value = current;
+                startTimeLabel.textContent = `Início: ${current} s`;
+                updateTimeInfo();
+            };
+
+            window.setEndTime = function () {
+                const current = video.currentTime.toFixed(2);
+                endTimeInput.value = current;
+                endTimeLabel.textContent = `Fim: ${current} s`;
+                updateTimeInfo();
+            };
+
+            function updateTimeInfo() {
+                const start = startTimeInput.value;
+                const end = endTimeInput.value;
+                if (start && end) {
+                    timeInfo.textContent = `Trecho selecionado: de ${start}s até ${end}s`;
+                }
+            }
+        });
+
     </script>
 </head>
 
@@ -154,11 +230,28 @@
             <label for="input-file" id="drop-area">
                 <input type="file" name="video" accept="video/*" id="input-file" hidden onchange="handleFileSelect()">
                 <div id="img-view">
-                <video id="preview-video" controls style="display: none;"></video>
-                
+                    <!--<video id="preview-video" controls style="display: none;"></video> -->
+                    <video id="preview-video" controls></video>
+
+                    <div style="display: flex; gap: 20px; align-items: center; flex-wrap: wrap;">
+                        <div>
+                            <button type="button" onclick="setStartTime()">Marcar Início</button>
+                            <label id="start-time-label">Início: -- s</label>
+                        </div>
+                        <div>
+                            <button type="button" onclick="setEndTime()">Marcar Fim</button>
+                            <label id="end-time-label">Fim: -- s</label>
+                        </div>
+                    </div>
+
+                    <input type="hidden" name="start_time" id="start_time">
+                    <input type="hidden" name="end_time" id="end_time">
+
+                    <p id="time-info"></p>
                     <p>Clique aqui para o upload de vídeo</p>
                 </div>
             </label>
+
         </div>
         <div class="form-container">
             <label for="type" class="form-label">Apelido:</label>

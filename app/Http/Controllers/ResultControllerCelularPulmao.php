@@ -26,7 +26,7 @@ class ResultControllerCelularPulmao extends Controller
         if (strstr($resultado, "Adenocarcinoma")) {
             $executavel = implode(' ', [$python3_path]); //. $path ];
 
-            $process = new Process([$executavel, 'segmentacaoAdenoCelularPulmao.py', $path]);
+            $process = new Process([$executavel, 'segmentacao/segmentacaoAdenoCelularPulmao.py', $path]);
             $process->start(); // Inicia o processo
             while ($process->isSuccessful())
                 ;
@@ -44,7 +44,7 @@ class ResultControllerCelularPulmao extends Controller
         } elseif (strstr($resultado, "Squamous")) {
             $executavel = implode(' ', [$python3_path]); //. $path ];
 
-            $process = new Process([$executavel, 'segmentacaoSquamousCelularPulmao.py', $path]);
+            $process = new Process([$executavel, 'segmentacao/segmentacaoSquamousCelularPulmao.py', $path]);
             $process->start(); // Inicia o processo
             set_time_limit(600); // Define o tempo limite para 600 segundos (10 minutos)
             while ($process->isSuccessful());

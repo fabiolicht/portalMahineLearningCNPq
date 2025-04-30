@@ -26,7 +26,7 @@ class ResultControllerFotografiaPele extends Controller
         if (strstr($resultado, "Maligno")) {
             $executavel = implode(' ', [$python3_path]); //. $path ];
 
-            $process = new Process([$executavel, 'segmentacaoFotografiaPele.py', $path]);
+            $process = new Process([$executavel, 'segmentacao/segmentacaoFotografiaPele.py', $path]);
             $process->start(); // Inicia o processo
             while ($process->isSuccessful())
                 ;
@@ -44,7 +44,7 @@ class ResultControllerFotografiaPele extends Controller
         } elseif (strstr($resultado, "Benigno")) {
             $executavel = implode(' ', [$python3_path]); //. $path ];
 
-            $process = new Process([$executavel, 'segmentacaoFotografiaPele.py', $path]);
+            $process = new Process([$executavel, 'segmentacao/segmentacaoFotografiaPele.py', $path]);
             $process->start(); // Inicia o processo
             while ($process->isSuccessful())
                 ;

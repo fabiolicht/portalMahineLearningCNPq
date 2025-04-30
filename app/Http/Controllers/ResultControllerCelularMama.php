@@ -26,7 +26,7 @@ class ResultControllerCelularMama extends Controller
         if (strstr($resultado, "Maligno")) {
             $executavel = implode(' ', [$python3_path]); //. $path ];
 
-            $process = new Process([$executavel, 'segmentacaoMalignoCelularMama.py', $path]);
+            $process = new Process([$executavel, 'segmentacao/segmentacaoMalignoCelularMama.py', $path]);
             $process->start(); // Inicia o processo
             while ($process->isSuccessful())
                 ;

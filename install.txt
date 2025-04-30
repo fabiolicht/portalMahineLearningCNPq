@@ -1,0 +1,24 @@
+pip install tensorrt tensorflow numpy matplotlib keras
+pip install pandas
+pip install glob
+pip install opencv-python
+pip install tensorflow_datasets
+pip install joblib
+pip install cuda
+sudo apt search python |grep -i cuda
+sudo apt install python3-pycuda 
+composer update
+
+mysql
+	CREATE USER 'laravel'@'localhost' IDENTIFIED BY 'Laravel@123';
+	GRANT ALL PRIVILEGES ON * . * TO 'laravel'@'localhost'; 
+	FLUSH PRIVILEGES;
+	quit;
+
+php artisan migrate
+php artisan route:clear
+php artisan queue:clear
+php artisan cache:clear
+
+php artisan serve
+

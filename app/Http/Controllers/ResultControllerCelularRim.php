@@ -26,7 +26,7 @@ class ResultControllerCelularRim extends Controller
         if (strstr($resultado, "Maligno")) {
             $executavel = implode(' ', [$python3_path]); //. $path ];
 
-            $process = new Process([$executavel, 'segmentacaoMalignoCelularRim.py', $path]);
+            $process = new Process([$executavel, 'segmentacao/segmentacaoMalignoCelularRim.py', $path]);
             $process->start(); // Inicia o processo
             while ($process->isSuccessful())
                 ;

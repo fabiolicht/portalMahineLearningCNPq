@@ -47,7 +47,7 @@ class PhotoController extends Controller
         if ($photo->type == "ultrassom" && $orgao == "mama") {
             $executavel = implode(' ', [$python3_path]); //. $path ];
             //$executavel = implode(' ', ['/usr/bin/ls']);
-            $process = new Process([$executavel, 'classificacaoUltrassomMama.py', $path]);
+            $process = new Process([$executavel, 'classificacao/classificacaoUltrassomMama.py', $path]);
             $process->start(); // Inicia o processo
             while ($process->isSuccessful())
                 ;
@@ -66,7 +66,7 @@ class PhotoController extends Controller
         } elseif ($photo->type == "mamografia") {
             $executavel = implode(' ', [$python3_path]); //. $path ];
             //$executavel = implode(' ', ['/usr/bin/ls']);
-            $process = new Process([$executavel, 'classificacaoMamografia.py', $path]);
+            $process = new Process([$executavel, 'classificacao/classificacaoMamografia.py', $path]);
             $process->start(); // Inicia o processo
             while ($process->isSuccessful())
                 ;
@@ -87,7 +87,7 @@ class PhotoController extends Controller
         } elseif ($photo->type == "tomografia" && $orgao == "figado") {
             $executavel = implode(' ', [$python3_path]); //. $path ];
             //$executavel = implode(' ', ['/usr/bin/ls']);
-            $process = new Process([$executavel, 'classificacaoTomografiaFigado.py', $path]);
+            $process = new Process([$executavel, 'classificacao/classificacaoTomografiaFigado.py', $path]);
             $process->start(); // Inicia o processo
             while ($process->isSuccessful())
                 ;
@@ -106,7 +106,7 @@ class PhotoController extends Controller
         } elseif ($photo->type == "ultrassom" && $orgao == "figado") {
             $executavel = implode(' ', [$python3_path]); //. $path ];
             //$executavel = implode(' ', ['/usr/bin/ls']);
-            $process = new Process([$executavel, 'classificacaoUltrassomFigado.py', $path]);
+            $process = new Process([$executavel, 'classificacao/classificacaoUltrassomFigado.py', $path]);
             $process->start(); // Inicia o processo
             while ($process->isSuccessful())
                 ;
@@ -125,7 +125,7 @@ class PhotoController extends Controller
         } elseif ($photo->type == "celular" && $orgao == "utero") {
             $executavel = implode(' ', [$python3_path]); //. $path ];
             //$executavel = implode(' ', ['/usr/bin/ls']);
-            $process = new Process([$executavel, 'classificacaoCelularUtero.py', $path]);
+            $process = new Process([$executavel, 'classificacao/classificacaoCelularUtero.py', $path]);
             $process->start(); // Inicia o processo
             while ($process->isSuccessful())
                 ;
@@ -144,7 +144,7 @@ class PhotoController extends Controller
         } elseif ($photo->type == "celular" && $orgao == "mama") {
             $executavel = implode(' ', [$python3_path]); //. $path ];
             //$executavel = implode(' ', ['/usr/bin/ls']);
-            $process = new Process([$executavel, 'classificacaoCelularMama.py', $path]);
+            $process = new Process([$executavel, 'classificacao/classificacaoCelularMama.py', $path]);
             $process->start(); // Inicia o processo
             while ($process->isSuccessful())
                 ;
@@ -163,7 +163,7 @@ class PhotoController extends Controller
         } elseif ($photo->type == "celular" && $orgao == "pulmao") {
             $executavel = implode(' ', [$python3_path]); //. $path ];
             //$executavel = implode(' ', ['/usr/bin/ls']);
-            $process = new Process([$executavel, 'classificacaoCelularPulmao.py', $path]);
+            $process = new Process([$executavel, 'classificacao/classificacaoCelularPulmao.py', $path]);
             $process->start(); // Inicia o processo
             while ($process->isSuccessful())
                 ;
@@ -182,7 +182,7 @@ class PhotoController extends Controller
         } elseif ($photo->type == "celular" && $orgao == "colon") {
             $executavel = implode(' ', [$python3_path]); //. $path ];
             //$executavel = implode(' ', ['/usr/bin/ls']);
-            $process = new Process([$executavel, 'classificacaoCelularColon.py', $path]);
+            $process = new Process([$executavel, 'classificacao/classificacaoCelularColon.py', $path]);
             $process->start(); // Inicia o processo
             while ($process->isSuccessful())
                 ;
@@ -201,7 +201,7 @@ class PhotoController extends Controller
         } elseif ($photo->type == "celular" && $orgao == "oral") {
             $executavel = implode(' ', [$python3_path]); //. $path ];
             //$executavel = implode(' ', ['/usr/bin/ls']);
-            $process = new Process([$executavel, 'classificacaoCelularOral.py', $path]);
+            $process = new Process([$executavel, 'classificacao/classificacaoCelularOral.py', $path]);
             $process->start(); // Inicia o processo
             while ($process->isSuccessful())
                 ;
@@ -220,7 +220,7 @@ class PhotoController extends Controller
         } elseif ($photo->type == "celular" && $orgao == "cervical") {
             $executavel = implode(' ', [$python3_path]); //. $path ];
             //$executavel = implode(' ', ['/usr/bin/ls']);
-            $process = new Process([$executavel, 'classificacaoCelularCervical.py', $path]);
+            $process = new Process([$executavel, 'classificacao/classificacaoCelularCervical.py', $path]);
             $process->start(); // Inicia o processo
             while ($process->isSuccessful())
                 ;
@@ -239,7 +239,7 @@ class PhotoController extends Controller
         } elseif ($photo->type == "celular" && $orgao == "rim") {
             $executavel = implode(' ', [$python3_path]); //. $path ];
             //$executavel = implode(' ', ['/usr/bin/ls']);
-            $process = new Process([$executavel, 'classificacaoCelularRim.py', $path]);
+            $process = new Process([$executavel, 'classificacao/classificacaoCelularRim.py', $path]);
             $process->start(); // Inicia o processo
             while ($process->isSuccessful())
                 ;
@@ -258,7 +258,7 @@ class PhotoController extends Controller
         } elseif ($photo->type == "tomografia" && $orgao == "rim") {
             $executavel = implode(' ', [$python3_path]); //. $path ];
             //$executavel = implode(' ', ['/usr/bin/ls']);
-            $process = new Process([$executavel, 'classificacaoTomografiaRim.py', $path]);
+            $process = new Process([$executavel, 'classificacao/classificacaoTomografiaRim.py', $path]);
             $process->start(); // Inicia o processo
             while ($process->isSuccessful())
                 ;
@@ -277,7 +277,7 @@ class PhotoController extends Controller
         } elseif ($photo->type == "tomografia" && $orgao == "cerebro") {
             $executavel = implode(' ', [$python3_path]); //. $path ];
             //$executavel = implode(' ', ['/usr/bin/ls']);
-            $process = new Process([$executavel, 'classificacaoTomografiaCerebro.py', $path]);
+            $process = new Process([$executavel, 'classificacao/classificacaoTomografiaCerebro.py', $path]);
             $process->start(); // Inicia o processo
             while ($process->isSuccessful())
                 ;
@@ -296,7 +296,7 @@ class PhotoController extends Controller
         } elseif ($photo->type == "tomografia" && $orgao == "abdomen") {
             $executavel = implode(' ', [$python3_path]); //. $path ];
             //$executavel = implode(' ', ['/usr/bin/ls']);
-            $process = new Process([$executavel, 'classificacaoTomografiaAbdomen.py', $path]);
+            $process = new Process([$executavel, 'classificacao/classificacaoTomografiaAbdomen.py', $path]);
             $process->start(); // Inicia o processo
             while ($process->isSuccessful())
                 ;
@@ -315,7 +315,7 @@ class PhotoController extends Controller
         } elseif ($photo->type == "fotografia" && $orgao == "pele") {
             $executavel = implode(' ', [$python3_path]); //. $path ];
             //$executavel = implode(' ', ['/usr/bin/ls']);
-            $process = new Process([$executavel, 'classificacaoFotografiaPele.py', $path]);
+            $process = new Process([$executavel, 'classificacao/classificacaoFotografiaPele.py', $path]);
             $process->start(); // Inicia o processo
             while ($process->isSuccessful())
                 ;

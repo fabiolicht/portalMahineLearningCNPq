@@ -26,7 +26,7 @@ class ResultControllerCelularOral extends Controller
         if (strstr($resultado, "Maligno")) {
             $executavel = implode(' ', [$python3_path]); //. $path ];
 
-            $process = new Process([$executavel, 'segmentacaoMalignoCelularOral.py', $path]);
+            $process = new Process([$executavel, 'segmentacao/segmentacaoMalignoCelularOral.py', $path]);
             $process->start(); // Inicia o processo
             while ($process->isSuccessful())
                 ;

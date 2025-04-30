@@ -26,7 +26,7 @@ class ResultControllerTomografiaFigado extends Controller
         if (strstr($resultado, "Tumor_MalignoQQQQQQ")) {
             $executavel = implode(' ', [$python3_path]); //. $path ];
 
-            $process = new Process([$executavel, 'segmentacaoMalignoTomografiaFigado.py', $path]);
+            $process = new Process([$executavel, 'segmentacao/segmentacaoMalignoTomografiaFigado.py', $path]);
             $process->start(); // Inicia o processo
             set_time_limit(600); // Define o tempo limite para 600 segundos (10 minutos)
             while ($process->isRunning()) {
@@ -49,7 +49,7 @@ class ResultControllerTomografiaFigado extends Controller
         } elseif (strstr($resultado, "Tumor_BenignoQQQQQQ")) {
             $executavel = implode(' ', [$python3_path]); //. $path ];
 
-            $process = new Process([$executavel, 'segmentacaoBenignoTomografiaFigado.py', $path]);
+            $process = new Process([$executavel, 'segmentacao/segmentacaoBenignoTomografiaFigado.py', $path]);
             $process->start(); // Inicia o processo
             set_time_limit(600); // Define o tempo limite para 600 segundos (10 minutos)
             //while ($process->isSuccessful());

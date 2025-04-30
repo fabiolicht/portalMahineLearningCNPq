@@ -19,6 +19,7 @@ use App\Http\Controllers\ResultControllerTomografiaFigado;
 use App\Http\Controllers\ResultControllerUltrassomFigado;
 use App\Http\Controllers\ResultControllerTomografiaRim;
 use App\Http\Controllers\ResultControllerUltrassomMama;
+use App\Http\Controllers\ResultControllerUltrassomMamaVideo;
 use App\Http\Controllers\VideoController;
 use Illuminate\Support\Facades\Route;
 
@@ -105,6 +106,9 @@ Route::post('/classificationFP/{resultado}/{path}', [ResultControllerFotografiaP
 
 Route::post('/validate-image', [ImageValidationController::class, 'validateImage']);
 
+//inclusao de videos
+Route::get('/classificationUMV/{resultado}/{path}', [ResultControllerUltrassomMamaVideo::class, '__invoke'])->name('classificationUMV');
+Route::post('/classificationUMV/{resultado}/{path}', [ResultControllerUltrassomMamaVideo::class, '__invoke']);
 
 
 Route::get('/uploadImagem', function () {

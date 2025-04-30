@@ -19,7 +19,7 @@ class VideoController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'video' => 'required|video|mimes:mpeg,mpg,mp4,mkv,webm|max:150000',
+            'video' => 'required|mimes:mpeg,mpg,mp4,mkv,webm|max:150000',
             'type' => 'required|in:celular,ultrassom,ressonancia,tomografia,raio_x,mamografia,fotografia',
             'location' => 'required|in:abdomen,pulmao,cervical,colon,utero,rim,oral,mama,figado,estomago,pele,outras_localizacoes',
         ]);
@@ -35,7 +35,7 @@ class VideoController extends Controller
         $nickname = $request->input("nickname");
         $path = $request->file('video')->storeAs("public/videos/{$nickname}", $name);
         $orgao = $request->location;
-        $video = new Video();
+        $video = new video();
         $video->name = $name;
         $video->size = $size;
         $video->type = $request->type;
@@ -47,7 +47,7 @@ class VideoController extends Controller
         if ($video->type == "ultrassom" && $orgao == "mama") {
             $executavel = implode(' ', [$python3_path]); //. $path ];
             //$executavel = implode(' ', ['/usr/bin/ls']);
-            $process = new Process([$executavel, 'classificacaoUltrassomMama.py', $path]);
+            $process = new Process([$executavel, 'classificacao/classificacaoUltrassomMamaVideo.py', $path]);
             $process->start(); // Inicia o processo
             while ($process->isSuccessful())
                 ;
@@ -59,7 +59,7 @@ class VideoController extends Controller
             $resultado = $saida;
             //return '<BR><H1>Resultado = ' . $resultado;
 
-            return redirect()->route('classificationUM', [
+            return redirect()->route('classificationUMV', [
                 'resultado' => $resultado,
                 'path' => $encodePath,
             ]);

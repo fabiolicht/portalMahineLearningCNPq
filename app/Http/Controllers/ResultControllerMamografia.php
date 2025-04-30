@@ -26,7 +26,7 @@ class ResultControllerMamografia extends Controller
         if (strstr($resultado, "Maligno")) {
             $executavel = implode(' ', [$python3_path]); //. $path ];
 
-            $process = new Process([$executavel, 'segmentacaoMalignoMamografia.py', $path]);
+            $process = new Process([$executavel, 'segmentacao/segmentacaoMalignoMamografia.py', $path]);
             $process->start(); // Inicia o processo
             while ($process->isSuccessful())
                 ;
@@ -44,7 +44,7 @@ class ResultControllerMamografia extends Controller
         } elseif (strstr($resultado, "Benigno")) {
             $executavel = implode(' ', [$python3_path]); //. $path ];
 
-            $process = new Process([$executavel, 'segmentacaoBenignoMamografia.py', $path]);
+            $process = new Process([$executavel, 'segmentacao/segmentacaoBenignoMamografia.py', $path]);
             $process->start(); // Inicia o processo
             set_time_limit(600); // Define o tempo limite para 600 segundos (10 minutos)
             while ($process->isSuccessful())

@@ -26,7 +26,7 @@ class ResultControllerCelularCervical extends Controller
         if (strstr($resultado, "DYK")) {
             $executavel = implode(' ', [$python3_path]); //. $path ];
 
-            $process = new Process([$executavel, 'segmentacaoDYKCelularCervical.py', $path]);
+            $process = new Process([$executavel, 'segmentacao/segmentacaoDYKCelularCervical.py', $path]);
             $process->start(); // Inicia o processo
             while ($process->isSuccessful())
                 ;
@@ -44,7 +44,7 @@ class ResultControllerCelularCervical extends Controller
         } elseif (strstr($resultado, "MEP")) {
             $executavel = implode(' ', [$python3_path]); //. $path ];
 
-            $process = new Process([$executavel, 'segmentacaoMEPCelularCervical.py', $path]);
+            $process = new Process([$executavel, 'segmentacao/segmentacaoMEPCelularCervical.py', $path]);
             $process->start(); // Inicia o processo
             set_time_limit(600); // Define o tempo limite para 600 segundos (10 minutos)
             while ($process->isSuccessful())
@@ -64,7 +64,7 @@ class ResultControllerCelularCervical extends Controller
         } elseif (strstr($resultado, "PAB")) {
             $executavel = implode(' ', [$python3_path]); //. $path ];
 
-            $process = new Process([$executavel, 'segmentacaoPABCelularCervical.py', $path]);
+            $process = new Process([$executavel, 'segmentacao/segmentacaoPABCelularCervical.py', $path]);
             $process->start(); // Inicia o processo
             set_time_limit(600); // Define o tempo limite para 600 segundos (10 minutos)
             while ($process->isSuccessful())
@@ -84,7 +84,7 @@ class ResultControllerCelularCervical extends Controller
         } elseif (strstr($resultado, "SFI")) {
             $executavel = implode(' ', [$python3_path]); //. $path ];
 
-            $process = new Process([$executavel, 'segmentacaoSFICelularCervical.py', $path]);
+            $process = new Process([$executavel, 'segmentacao/segmentacaoSFICelularCervical.py', $path]);
             $process->start(); // Inicia o processo
             set_time_limit(600); // Define o tempo limite para 600 segundos (10 minutos)
             while ($process->isSuccessful())

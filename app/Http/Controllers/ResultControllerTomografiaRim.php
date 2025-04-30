@@ -26,7 +26,7 @@ class ResultControllerTomografiaRim extends Controller
         if (strstr($resultado, "Tumor_MalignoQQQQQQ")) {
             $executavel = implode(' ', [$python3_path]); //. $path ];
 
-            $process = new Process([$executavel, 'segmentacaoMalignoTomografiaRim.py', $path]);
+            $process = new Process([$executavel, 'segmentacao/segmentacaoMalignoTomografiaRim.py', $path]);
             $process->start(); // Inicia o processo
             set_time_limit(600); // Define o tempo limite para 600 segundos (10 minutos)
             while ($process->isRunning()) {
@@ -49,7 +49,7 @@ class ResultControllerTomografiaRim extends Controller
         } elseif (strstr($resultado, "Tumor_MalignoQQQQQQ")) {
             $executavel = implode(' ', [$python3_path]); //. $path ];
 
-            $process = new Process([$executavel, 'segmentacaoBenignoTomografiaRim.py', $path]);
+            $process = new Process([$executavel, 'segmentacao/segmentacaoBenignoTomografiaRim.py', $path]);
             $process->start(); // Inicia o processo
             set_time_limit(600); // Define o tempo limite para 600 segundos (10 minutos)
             //while ($process->isSuccessful());

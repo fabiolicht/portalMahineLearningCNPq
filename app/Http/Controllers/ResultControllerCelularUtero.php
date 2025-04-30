@@ -26,7 +26,7 @@ class ResultControllerCelularUtero extends Controller
         if (strstr($resultado, "DYK")) {
             $executavel = implode(' ', [$python3_path]); //. $path ];
 
-            $process = new Process([$executavel, 'segmentacaoDYKCelularUtero.py', $path]);
+            $process = new Process([$executavel, 'segmentacao/segmentacaoDYKCelularUtero.py', $path]);
             $process->start(); // Inicia o processo
             set_time_limit(600); // Define o tempo limite para 600 segundos (10 minutos)
             while ($process->isRunning()) {
@@ -49,7 +49,7 @@ class ResultControllerCelularUtero extends Controller
         } elseif (strstr($resultado, "KOC")) {
             $executavel = implode(' ', [$python3_path]); //. $path ];
 
-            $process = new Process([$executavel, 'segmentacaoKOCCelularUtero.py', $path]);
+            $process = new Process([$executavel, 'segmentacao/segmentacaoKOCCelularUtero.py', $path]);
             $process->start(); // Inicia o processo
             set_time_limit(600); // Define o tempo limite para 600 segundos (10 minutos)
             //while ($process->isSuccessful());
@@ -69,7 +69,7 @@ class ResultControllerCelularUtero extends Controller
         } elseif (strstr($resultado, "MEP")) {
             $executavel = implode(' ', [$python3_path]); //. $path ];
 
-            $process = new Process([$executavel, 'segmentacaoMEPCelularUtero.py', $path]);
+            $process = new Process([$executavel, 'segmentacao/segmentacaoMEPCelularUtero.py', $path]);
             $process->start(); // Inicia o processo
             set_time_limit(600); // Define o tempo limite para 600 segundos (10 minutos)
             //while ($process->isSuccessful());
@@ -87,7 +87,7 @@ class ResultControllerCelularUtero extends Controller
         } elseif (strstr($resultado, "PAB")) {
             $executavel = implode(' ', [$python3_path]); //. $path ];
 
-            $process = new Process([$executavel, 'segmentacaoPABCelularUtero.py', $path]);
+            $process = new Process([$executavel, 'segmentacao/segmentacaoPABCelularUtero.py', $path]);
             $process->start(); // Inicia o processo
             set_time_limit(600); // Define o tempo limite para 600 segundos (10 minutos)
             //while ($process->isSuccessful());
@@ -105,7 +105,7 @@ class ResultControllerCelularUtero extends Controller
         } elseif (strstr($resultado, "SFI")) {
             $executavel = implode(' ', [$python3_path]); //. $path ];
 
-            $process = new Process([$executavel, 'segmentacaoSFICelularUtero.py', $path]);
+            $process = new Process([$executavel, 'segmentacao/segmentacaoSFICelularUtero.py', $path]);
             $process->start(); // Inicia o processo
             set_time_limit(600); // Define o tempo limite para 600 segundos (10 minutos)
             //while ($process->isSuccessful());

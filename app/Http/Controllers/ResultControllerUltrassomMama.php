@@ -26,7 +26,7 @@ class ResultControllerUltrassomMama extends Controller
         if (strstr($resultado, "Maligno")) {
             $executavel = implode(' ', [$python3_path]); //. $path ];
 
-            $process = new Process([$executavel, 'segmentacaoUltrassomMamaMaligno.py', $path]);
+            $process = new Process([$executavel, 'segmentacao/segmentacaoUltrassomMamaMaligno.py', $path]);
             $process->start(); // Inicia o processo
             while ($process->isSuccessful())
                 ;
@@ -44,7 +44,7 @@ class ResultControllerUltrassomMama extends Controller
         } elseif (strstr($resultado, "Benigno")) {
             $executavel = implode(' ', [$python3_path]); //. $path ];
 
-            $process = new Process([$executavel, 'segmentacaoUltrassomMamaBenigno.py', $path]);
+            $process = new Process([$executavel, 'segmentacao/segmentacaoUltrassomMamaBenigno.py', $path]);
             $process->start(); // Inicia o processo
             while ($process->isSuccessful())
                 ;
