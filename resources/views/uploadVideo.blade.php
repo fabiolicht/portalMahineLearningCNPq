@@ -22,115 +22,84 @@
         rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="/css/upload.css">
 
-    <title>Upload</title>
-    <!-- ... (head permanece igual até a tag <script>) -->
+    <title>Upload de Vídeo</title>
 
     <script>
+        const locationsByType = {
+            celular: ["cervical", "colon", "mama", "oral", "pulmao", "rim", "utero", "outras_localizacoes"],
+            mamografia: ["mama"],
+            ultrassom: ["figado", "mama", "outras_localizacoes"],
+            ressonancia: ["outras_localizacoes"],
+            tomografia: ["abdomen", "cerebro", "figado", "rim", "outras_localizacoes"],
+            raio_x: ["pulmao", "outras_localizacoes"],
+            fotografia: ["pele"]
+        };
+
+        const locationLabels = {
+            abdomen: "Abdômen",
+            cervical: "Cervical",
+            cerebro: "Cérebro",
+            figado: "Fígado",
+            utero: "Útero",
+            colon: "Cólon",
+            mama: "Mama",
+            oral: "Oral",
+            pulmao: "Pulmão",
+            rim: "Rim",
+            pele: "Pele",
+            outras_localizacoes: "Outras Localizações"
+        };
+
         function validateNickname(input) {
             input.value = input.value.replace(/[^a-zA-Z0-9_]/g, '');
         }
 
-        function showFileInput() {
-            const fileInputLabel = document.getElementById('drop-area');
-            const typeSelect = document.getElementById('type').value;
-            if (typeSelect) {
-                fileInputLabel.style.display = 'block';
-                updateLocations();
-            } else {
-                fileInputLabel.style.display = 'none';
-            }
+        function setMessage(message, type = 'info') {
+            const statusBox = document.getElementById('status-box');
+            statusBox.className = `status-box ${type}`;
+            statusBox.textContent = message;
+            statusBox.style.display = 'block';
         }
 
-        async function handleFileSelect() {
-            try {
-                const fileInput = document.getElementById('input-file');
-                const previewVideo = document.getElementById('preview-video');
-
-                if (fileInput.files && fileInput.files[0]) {
-                    const file = fileInput.files[0];
-                    const reader = new FileReader();
-                    reader.onload = function (e) {
-                        previewVideo.src = e.target.result;
-                        previewVideo.style.display = 'block';
-                    };
-                    reader.readAsDataURL(file);
-                }
-
-                const formData = new FormData();
-                formData.append('video', fileInput.files[0]);
-                const typeSelect = document.getElementById('type').value;
-                formData.append('type', typeSelect);
-
-                const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-                formData.append('_token', csrfToken);
-
-                /*
-                const response = await fetch('/validate-video', {
-                    method: 'POST',
-                    body: formData,
-                });
-                
-
-                if (!response.ok) {
-                    console.error('Status da resposta:', response.status);
-                    console.error('Texto da resposta:', await response.text());
-                    throw new Error(`Erro na resposta do servidor. Status: ${response.status}`);
-                }
-                
-
-                const result = await response.json();
-                */
-            } catch (error) {
-                //console.error('Erro ao validar o vídeo:', error);
-                //alert('Erro ao validar o vídeo: ' + error.message);
-            }
+        function clearMessage() {
+            const statusBox = document.getElementById('status-box');
+            statusBox.style.display = 'none';
+            statusBox.textContent = '';
         }
 
         function updateLocations() {
-            const typeSelect = document.getElementById('type').value;
+            const typeSelect = document.getElementById('type');
             const locationSelect = document.getElementById('location');
-            locationSelect.innerHTML = '';
+            const selectedType = typeSelect.value;
+            locationSelect.innerHTML = '<option value="" disabled selected>Selecione a localização</option>';
 
-            const locationsByType = {
-                celular: ["cervical", "colon", "mama", "oral", "pulmao", "rim", "utero", "outras_localizacoes"],
-                mamografia: ["mama"],
-                ultrassom: ["figado", "mama", "outras_localizacoes"],
-                ressonancia: ["outras_localizacoes"],
-                tomografia: ["abdomen", "cerebro", "figado", "rim", "outras_localizacoes"],
-                raio_x: ["pulmao", "outras_localizacoes"],
-                fotografia: ["pele"]
-            };
-
-            const locationLabels = {
-                abdomen: "Abdômen",
-                cervical: "Cervical",
-                cerebro: "Cérebro",
-                figado: "Fígado",
-                utero: "Útero",
-                colon: "Cólon",
-                mama: "Mama",
-                oral: "Oral",
-                pulmao: "Pulmão",
-                rim: "Rim",
-                pele: "Pele",
-                outras_localizacoes: "Outras Localizações"
-            };
-
-            if (locationsByType[typeSelect]) {
-                locationsByType[typeSelect].forEach(location => {
+            if (locationsByType[selectedType]) {
+                locationsByType[selectedType].forEach(location => {
                     const option = document.createElement('option');
                     option.value = location;
                     option.textContent = locationLabels[location];
                     locationSelect.appendChild(option);
                 });
-            } else {
-                console.error('Nenhuma localização encontrada para o tipo selecionado:', typeSelect);
             }
         }
 
-        const video = document.getElementById('preview-video');
+        function updateVideoPreview() {
+            const file = document.getElementById("input-file").files[0];
+            const preview = document.getElementById("preview-video");
+            const fileMeta = document.getElementById('file-meta');
+            if (!file) {
+                preview.removeAttribute('src');
+                fileMeta.textContent = 'Nenhum arquivo selecionado.';
+                return;
+            }
+            const url = URL.createObjectURL(file);
+            preview.src = url;
+            preview.style.display = "block";
+            fileMeta.textContent = `${file.name} - ${(file.size / (1024 * 1024)).toFixed(2)} MB`;
+        }
 
         function setStartTime() {
+            const video = document.getElementById('preview-video');
             const current = video.currentTime.toFixed(2);
             document.getElementById('start_time').value = current;
             document.getElementById('start-time-label').textContent = `Início: ${current} s`;
@@ -138,6 +107,7 @@
         }
 
         function setEndTime() {
+            const video = document.getElementById('preview-video');
             const current = video.currentTime.toFixed(2);
             document.getElementById('end_time').value = current;
             document.getElementById('end-time-label').textContent = `Fim: ${current} s`;
@@ -152,56 +122,140 @@
             }
         }
 
-        function handleFileSelect() {
-            const file = document.getElementById("input-file").files[0];
-            const preview = document.getElementById("preview-video");
-            if (file) {
-                const url = URL.createObjectURL(file);
-                preview.src = url;
-                preview.style.display = "block";
+        function validateForm() {
+            const fileInput = document.getElementById('input-file');
+            const typeSelect = document.getElementById('type');
+            const locationSelect = document.getElementById('location');
+
+            if (!fileInput.files || !fileInput.files[0]) {
+                setMessage('Selecione um vídeo antes de enviar.', 'error');
+                return false;
+            }
+
+            const file = fileInput.files[0];
+            const allowedMime = ['video/mpeg', 'video/mpg', 'video/mp4', 'video/x-matroska', 'video/webm'];
+            if (!allowedMime.includes(file.type)) {
+                setMessage('Formato inválido. Use MPEG, MPG, MP4, MKV ou WEBM.', 'error');
+                return false;
+            }
+
+            if (file.size > 150000 * 1024) {
+                setMessage('O vídeo excede o limite permitido.', 'error');
+                return false;
+            }
+
+            if (!typeSelect.value || !locationSelect.value) {
+                setMessage('Selecione tipo e localização do exame.', 'error');
+                return false;
+            }
+
+            return true;
+        }
+
+        async function pollAiJob(statusUrl) {
+            const maxAttempts = 240;
+            for (let attempt = 1; attempt <= maxAttempts; attempt++) {
+                const response = await fetch(statusUrl, { headers: { 'Accept': 'application/json' } });
+                if (!response.ok) {
+                    throw new Error('Falha ao consultar status do processamento.');
+                }
+                const payload = await response.json();
+
+                if (payload.status === 'completed') {
+                    const resultRoute = payload.resultRoute;
+                    const encodedPath = encodeURIComponent(payload.path);
+                    const encodedResult = encodeURIComponent(payload.result ?? '');
+                    window.location.href = `/${resultRoute}/${encodedResult}/${encodedPath}`;
+                    return;
+                }
+
+                if (payload.status === 'failed') {
+                    throw new Error(payload.error || 'Processamento falhou.');
+                }
+
+                setMessage(`Processando vídeo... tentativa ${attempt}`, 'info');
+                await new Promise((resolve) => setTimeout(resolve, 2500));
+            }
+
+            throw new Error('Tempo limite excedido ao aguardar processamento.');
+        }
+
+        async function submitUpload(event) {
+            event.preventDefault();
+            clearMessage();
+            if (!validateForm()) {
+                return;
+            }
+
+            const form = document.getElementById('upload-video-form');
+            const submitButton = document.getElementById('submit-button');
+            const spinner = document.getElementById('loading-indicator');
+            const formData = new FormData(form);
+
+            submitButton.disabled = true;
+            spinner.style.display = 'inline-block';
+            setMessage('Enviando vídeo para processamento...', 'info');
+
+            try {
+                const response = await fetch('/uploadV', {
+                    method: 'POST',
+                    headers: {
+                        'X-Requested-With': 'XMLHttpRequest',
+                        'Accept': 'application/json',
+                    },
+                    body: formData,
+                });
+
+                if (response.status === 202) {
+                    const payload = await response.json();
+                    setMessage('Upload concluído. Processamento assíncrono iniciado...', 'success');
+                    await pollAiJob(payload.statusUrl);
+                    return;
+                }
+
+                if (response.redirected) {
+                    window.location.href = response.url;
+                    return;
+                }
+
+                if (!response.ok) {
+                    throw new Error('Não foi possível concluir o upload.');
+                }
+
+                const textResponse = await response.text();
+                if (textResponse.includes('<html') || textResponse.includes('<!DOCTYPE')) {
+                    document.open();
+                    document.write(textResponse);
+                    document.close();
+                    return;
+                }
+
+                setMessage('Processamento concluído.', 'success');
+            } catch (error) {
+                setMessage(error.message || 'Erro ao processar upload de vídeo.', 'error');
+            } finally {
+                submitButton.disabled = false;
+                spinner.style.display = 'none';
             }
         }
 
-        document.addEventListener('DOMContentLoaded', function () {
-            const video = document.getElementById('preview-video');
-            const inputFile = document.getElementById('input-file');
-            const startTimeInput = document.getElementById('start_time');
-            const endTimeInput = document.getElementById('end_time');
-            const startTimeLabel = document.getElementById('start-time-label');
-            const endTimeLabel = document.getElementById('end-time-label');
-            const timeInfo = document.getElementById('time-info');
+        function bootstrapPage() {
+            document.getElementById('type').addEventListener('change', updateLocations);
+            document.getElementById('input-file').addEventListener('change', updateVideoPreview);
+            document.getElementById('upload-video-form').addEventListener('submit', submitUpload);
+        }
 
-            inputFile.addEventListener('change', () => {
-                const file = inputFile.files[0];
-                if (file) {
-                    const url = URL.createObjectURL(file);
-                    video.src = url;
-                    video.style.display = 'block';
-                }
-            });
+        function showMenu() {
+            const navLinks = document.getElementById("navLinks");
+            navLinks.style.right = "0";
+        }
 
-            window.setStartTime = function () {
-                const current = video.currentTime.toFixed(2);
-                startTimeInput.value = current;
-                startTimeLabel.textContent = `Início: ${current} s`;
-                updateTimeInfo();
-            };
+        function hideMenu() {
+            const navLinks = document.getElementById("navLinks");
+            navLinks.style.right = "-200px";
+        }
 
-            window.setEndTime = function () {
-                const current = video.currentTime.toFixed(2);
-                endTimeInput.value = current;
-                endTimeLabel.textContent = `Fim: ${current} s`;
-                updateTimeInfo();
-            };
-
-            function updateTimeInfo() {
-                const start = startTimeInput.value;
-                const end = endTimeInput.value;
-                if (start && end) {
-                    timeInfo.textContent = `Trecho selecionado: de ${start}s até ${end}s`;
-                }
-            }
-        });
+        document.addEventListener('DOMContentLoaded', bootstrapPage);
 
     </script>
 </head>
@@ -221,25 +275,25 @@
             </div>
             <i class="fa fa-bars" onclick="showMenu()"></i>
         </nav>
-        <h1>Upload</h1>
+        <h1>Upload de Vídeo</h1>
     </section>
 
-    <form method="POST" action="/uploadV" enctype="multipart/form-data">
+    <form id="upload-video-form" method="POST" action="/uploadV" enctype="multipart/form-data">
         @csrf
         <div class="hero">
-            <label for="input-file" id="drop-area">
-                <input type="file" name="video" accept="video/*" id="input-file" hidden onchange="handleFileSelect()">
+            <label for="input-file" id="drop-area" class="card-panel">
+                <input type="file" name="video" accept="video/*" id="input-file" hidden>
                 <div id="img-view">
-                    <!--<video id="preview-video" controls style="display: none;"></video> -->
                     <video id="preview-video" controls></video>
+                    <span id="file-meta" class="file-meta">Nenhum arquivo selecionado.</span>
 
-                    <div style="display: flex; gap: 20px; align-items: center; flex-wrap: wrap;">
-                        <div>
-                            <button type="button" onclick="setStartTime()">Marcar Início</button>
+                    <div class="video-marker-container">
+                        <div class="video-marker-item">
+                            <button type="button" class="marker-button" onclick="setStartTime()">Marcar Início</button>
                             <label id="start-time-label">Início: -- s</label>
                         </div>
-                        <div>
-                            <button type="button" onclick="setEndTime()">Marcar Fim</button>
+                        <div class="video-marker-item">
+                            <button type="button" class="marker-button" onclick="setEndTime()">Marcar Fim</button>
                             <label id="end-time-label">Fim: -- s</label>
                         </div>
                     </div>
@@ -248,7 +302,7 @@
                     <input type="hidden" name="end_time" id="end_time">
 
                     <p id="time-info"></p>
-                    <p>Clique aqui para o upload de vídeo</p>
+                    <p>Clique para selecionar um vídeo do exame</p>
                 </div>
             </label>
 
@@ -259,7 +313,7 @@
                 placeholder="Use um apelido para identificação do resultado" oninput="validateNickname(this)">
 
             <label for="type" class="form-label">Tipo:</label>
-            <select name="type" class="form-select" id="type" onchange="showFileInput()">
+            <select name="type" class="form-select" id="type">
                 <option value="" disabled selected>Selecione um tipo de exame</option>
                 <option value="ultrassom">Ultrassom</option>
                 <option value="tomografia">Tomografia</option>
@@ -270,10 +324,15 @@
 
             <label for="location" class="form-label">Local:</label>
             <select name="location" class="form-select" id="location">
-                <!-- Atualizado via JS -->
+                <option value="" disabled selected>Selecione a localização</option>
             </select>
 
-            <input type="submit" value="Upload" class="form-submit">
+            <div id="status-box" class="status-box" style="display: none;"></div>
+
+            <button type="submit" id="submit-button" class="form-submit">
+                Enviar para análise
+                <span id="loading-indicator" class="loading-indicator" style="display: none;"></span>
+            </button>
         </div>
     </form>
 </body>
