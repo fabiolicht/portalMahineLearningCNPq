@@ -7,6 +7,8 @@ Este repositorio contem um portal web para upload e analise de exames medicos co
 A documentacao tecnica completa, preparada para uso em artigo cientifico/tecnologico, esta em:
 
 - `DOCUMENTACAO_CIENTIFICA.md`
+- `MICROSERVICES.md`
+- `ARTIGO_ATUALIZACAO_MICROSERVICOS.md`
 
 ## Stack do projeto
 

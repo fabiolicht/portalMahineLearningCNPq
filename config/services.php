@@ -31,4 +31,12 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    'medical_ai' => [
+        'enabled' => env('MEDICAL_AI_MICROSERVICE_ENABLED', false),
+        'async_enabled' => env('MEDICAL_AI_ASYNC_ENABLED', false),
+        'classification_url' => env('MEDICAL_AI_CLASSIFICATION_URL', 'http://classification-service:8001'),
+        'segmentation_url' => env('MEDICAL_AI_SEGMENTATION_URL', 'http://segmentation-service:8002'),
+        'timeout' => env('MEDICAL_AI_TIMEOUT', 600),
+    ],
+
 ];

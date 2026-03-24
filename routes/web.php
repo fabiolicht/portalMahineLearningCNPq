@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\EventController;
+use App\Http\Controllers\AiJobController;
 use App\Http\Controllers\ImageValidationController;
 use App\Http\Controllers\PhotoController;
 use App\Http\Controllers\ResultController;
@@ -105,6 +106,7 @@ Route::get('/classificationFP/{resultado}/{path}', [ResultControllerFotografiaPe
 Route::post('/classificationFP/{resultado}/{path}', [ResultControllerFotografiaPele::class, '__invoke']);
 
 Route::post('/validate-image', [ImageValidationController::class, 'validateImage']);
+Route::get('/ai-jobs/{requestId}', [AiJobController::class, 'show'])->name('ai.job.status');
 
 //inclusao de videos
 Route::get('/classificationUMV/{resultado}/{path}', [ResultControllerUltrassomMamaVideo::class, '__invoke'])->name('classificationUMV');

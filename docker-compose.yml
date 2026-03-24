@@ -1,0 +1,46 @@
+version: "3.9"
+
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: portal-ml-mysql
+    environment:
+      MYSQL_DATABASE: portalml
+      MYSQL_USER: laravel
+      MYSQL_PASSWORD: laravel
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - "3307:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+  redis:
+    image: redis:7-alpine
+    container_name: portal-ml-redis
+    ports:
+      - "6380:6379"
+
+  classification-service:
+    build:
+      context: ./services/classification-service
+    container_name: portal-ml-classification
+    ports:
+      - "8001:8001"
+    volumes:
+      - ./:/app
+    depends_on:
+      - redis
+
+  segmentation-service:
+    build:
+      context: ./services/segmentation-service
+    container_name: portal-ml-segmentation
+    ports:
+      - "8002:8002"
+    volumes:
+      - ./:/app
+    depends_on:
+      - redis
+
+volumes:
+  mysql_data:
